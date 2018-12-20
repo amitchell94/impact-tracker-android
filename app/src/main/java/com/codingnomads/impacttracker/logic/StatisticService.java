@@ -4,6 +4,8 @@ import com.codingnomads.impacttracker.data.UriStatisticRepository;
 
 import java.util.List;
 
+import static com.codingnomads.impacttracker.logic.ImpactUtils.transformStatisticToImpactList;
+
 public class StatisticService {
 
     private UriStatisticRepository statisticRepository;
@@ -12,7 +14,7 @@ public class StatisticService {
         this.statisticRepository = statisticRepository;
     }
 
-    public List<Statistic> getImpact() {
-        return statisticRepository.getImpact();
+    public List<Impact> getImpact() {
+        return transformStatisticToImpactList(statisticRepository.getImpact());
     }
 }

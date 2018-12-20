@@ -9,6 +9,7 @@ import com.codingnomads.impacttracker.R;
 import com.codingnomads.impacttracker.data.StatisticAdapter;
 import com.codingnomads.impacttracker.data.UriStatisticRepository;
 import com.codingnomads.impacttracker.logic.GetStatisticTask;
+import com.codingnomads.impacttracker.logic.Impact;
 import com.codingnomads.impacttracker.logic.Statistic;
 import com.codingnomads.impacttracker.logic.StatisticService;
 
@@ -18,21 +19,19 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private List<Statistic> statistic = new ArrayList<>();
+    private List<Impact> impacts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mRecyclerView = findViewById(R.id.impactRecycler);
-        mAdapter = new StatisticAdapter(statistic);
+        mAdapter = new StatisticAdapter(impacts);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -41,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
         mRecyclerView.setAdapter(mAdapter);
 
-        GetStatisticTask getDivesTask = new GetStatisticTask(statistic,statisticService,mAdapter);
+        GetStatisticTask getStatisticTask = new GetStatisticTask(impacts,statisticService,mAdapter);
 
-        getDivesTask.execute();
+        getStatisticTask.execute();
     }
 
     private RestTemplate createRestTemplate() {

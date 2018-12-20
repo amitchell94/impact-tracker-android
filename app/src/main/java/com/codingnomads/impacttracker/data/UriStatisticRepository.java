@@ -15,21 +15,20 @@ public class UriStatisticRepository implements StatisticRepository {
 
     private RestTemplate restTemplate;
 
-    private String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMCJ9.J9abfsB_AU9sdP8tuyJuk6WEAXtH4Kf2hTWtxsE9ags";
+    private String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4In0.I-dAPedxck0H85H2nSlmPgYL6v1AHlxLCVZBJRv4DEU";
 
     public UriStatisticRepository(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     @Override
-    public List<Statistic> getImpact() {
+    public Statistic getImpact() {
         Statistic impact = restTemplate.getForObject(getUri("api/impact/total/",token), Statistic.class);
-        return Arrays.asList(impact);
+        return impact;
     }
 
     private URI getUri(String path, String value) {
-        return UriComponentsBuilder.fromUriString("http://192.168.1.71")
-                .port("8080")
+        return UriComponentsBuilder.fromUriString("http://18.220.98.185")
                 .path(path)
                 .queryParam("token",value)
                 .build()
