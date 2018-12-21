@@ -4,26 +4,29 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
-import com.codingnomads.impacttracker.logic.Statistic;
+import com.codingnomads.impacttracker.logic.Impact;
 
 import java.util.List;
 
 public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.MyViewHolder> {
-    private List<Statistic> statisticFromDb;
+    private List<Impact> impacts;
 
-    public StatisticAdapter(List<Statistic> statisticFromDb) {
-        this.statisticFromDb = statisticFromDb;
+    public StatisticAdapter(List<Impact> statisticFromDb) {
+        this.impacts = statisticFromDb;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView gallons, co2;
+        public TextView impact;
+        public LinearLayout layout;
         public MyViewHolder(View view) {
             super(view);
-            gallons = view.findViewById(R.id.gallons);
-            co2 = view.findViewById(R.id.co2);
+            impact = view.findViewById(R.id.impact);
+            layout = view.findViewById(R.id.card_layout);
         }
     }
 
@@ -37,15 +40,13 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.MyVi
 
     @Override
     public void onBindViewHolder( MyViewHolder holder, int position) {
-        if (statisticFromDb.size() > 0) {
-            holder.gallons.setText(Long.toString(statisticFromDb.get(0).getGallonsOfWater()) + " gallons of water");
-            holder.co2.setText(Double.toString(statisticFromDb.get(0).getTonsOfCo2()) + " tons of co2");
-        }
+        holder.impact.setText(Long.toString(impacts.get(position).getAmount()) + impacts.get(position).getUnits());
+        holder.layout.setBackgroundResource(impacts.get(position).getBackgroundId());
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return impacts.size();
     }
 
 }

@@ -22,9 +22,9 @@ public class UriStatisticRepository implements StatisticRepository {
     }
 
     @Override
-    public List<Statistic> getImpact() {
+    public Statistic getImpact() {
         Statistic impact = restTemplate.getForObject(getUri("api/impact/total/",token), Statistic.class);
-        return Arrays.asList(impact);
+        return impact;
     }
 
     private URI getUri(String path, String value) {
