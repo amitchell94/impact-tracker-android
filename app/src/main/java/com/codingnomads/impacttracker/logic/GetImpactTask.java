@@ -5,23 +5,21 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
-import static com.codingnomads.impacttracker.logic.ImpactUtils.transformStatisticToImpactList;
-
-public class GetStatisticTask extends AsyncTask<String, Void, List<Impact>> {
+public class GetImpactTask extends AsyncTask<String, Void, List<Impact>> {
 
     private List<Impact> impacts;
-    private StatisticService statisticService;
+    private ImpactService impactService;
     private RecyclerView.Adapter mAdapter;
 
-    public GetStatisticTask(List<Impact> impacts, StatisticService statisticService, RecyclerView.Adapter mAdapter) {
+    public GetImpactTask(List<Impact> impacts, ImpactService impactService, RecyclerView.Adapter mAdapter) {
         this.impacts = impacts;
-        this.statisticService = statisticService;
+        this.impactService = impactService;
         this.mAdapter = mAdapter;
     }
 
     @Override
     protected List<Impact> doInBackground(String... strings) {
-        return statisticService.getImpact();
+        return impactService.getImpact();
     }
 
     @Override
