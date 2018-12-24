@@ -39,9 +39,9 @@ public class ImpactActivity extends AppCompatActivity {
 
         mRecyclerView.setAdapter(mAdapter);
 
-        GetImpactTask getStatisticTask = new GetImpactTask(impacts, impactService,mAdapter);
+        GetImpactTask getImpactTask = new GetImpactTask(impacts, impactService,mAdapter);
 
-        getStatisticTask.execute();
+        getImpactTask.execute();
     }
 
     private RestTemplate createRestTemplate() {

@@ -9,7 +9,11 @@ public class LoginService {
         this.impactRepository = impactRepository;
     }
 
-    public String getToken(Credentials credentials) {
+    public Boolean getToken(Credentials credentials) {
+        if (credentials.getPassword() == null || credentials.getUsername() == null ||
+                "".equals(credentials.getPassword()) || "".equals(credentials.getUsername())) {
+            return false;
+        }
         return impactRepository.getToken(credentials);
     }
 }

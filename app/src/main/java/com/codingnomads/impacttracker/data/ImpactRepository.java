@@ -17,7 +17,6 @@ public class ImpactRepository {
     private RestTemplate restTemplate;
 
     private static String storedToken;
-
     public ImpactRepository(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
@@ -27,14 +26,22 @@ public class ImpactRepository {
         return impact;
     }
 
-    public String getToken(Credentials credentials) {
-        Token token = restTemplate.postForObject(getUri("/api/authenticate"),credentials,Token.class);
-        storedToken = token.getValue();
-        return token.getValue();
+    public Boolean getToken(Credentials credentials) {
+        try {
+            Token token = restTemplate.postForObject(getUri("/api/authenticate"), credentials, Token.class);
+            storedToken = token.getValue();
+            if (token.getValue() != null) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private URI getUri(String path) {
-//        return UriComponentsBuilder.fromUriString("http://18.220.98.185")
         return UriComponentsBuilder.fromUriString("http://192.168.1.71")
                 .port(8080)
                 .path(path)
