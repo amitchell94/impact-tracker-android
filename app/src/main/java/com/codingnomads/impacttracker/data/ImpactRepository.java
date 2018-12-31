@@ -42,8 +42,7 @@ public class ImpactRepository {
     }
 
     private URI getUri(String path) {
-        return UriComponentsBuilder.fromUriString("http://192.168.1.71")
-                .port(8080)
+        return UriComponentsBuilder.fromUriString("http:///18.220.98.185/")
                 .path(path)
                 .build()
                 .encode()
@@ -51,8 +50,7 @@ public class ImpactRepository {
     }
 
     private URI getUriWithToken(String path, String value) {
-        return UriComponentsBuilder.fromUriString("http://192.168.1.71")
-                .port(8080)
+        return UriComponentsBuilder.fromUriString("http://18.220.98.185/")
                 .path(path)
                 .queryParam("token",value)
                 .build()
