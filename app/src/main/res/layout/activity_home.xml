@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_height="match_parent" android:layout_width="match_parent">
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:background="@drawable/bg_masthead_android"
+            android:gravity="center"
+            android:layout_height="250dp"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:alpha="0.4"
+                android:background="@android:color/black"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:fontFamily="@font/lato_bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:padding="15dp"
+                    android:text="Discover how even small actions can have an impact."
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textFontWeight="700"
+                    android:textSize="28dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:background="@drawable/button_shape"
+                    android:layout_centerVertical="true"
+                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:text="Sign Up!"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_height="250dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:fontFamily="@font/lato_bold"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="How does it work?"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textFontWeight="700"
+                android:textSize="28dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:fontFamily="@font/lato_light"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:text="The impact tracker allows you to add commitments to actions that will have a positive impact on the world. Our calculator will estimate how much of a positive impact your actions have had on the world!"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
