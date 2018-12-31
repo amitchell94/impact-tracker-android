@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
@@ -13,10 +12,10 @@ import com.codingnomads.impacttracker.logic.Impact;
 
 import java.util.List;
 
-public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.MyViewHolder> {
+public class ImpactAdapter extends RecyclerView.Adapter<ImpactAdapter.MyViewHolder> {
     private List<Impact> impacts;
 
-    public StatisticAdapter(List<Impact> statisticFromDb) {
+    public ImpactAdapter(List<Impact> statisticFromDb) {
         this.impacts = statisticFromDb;
     }
 
@@ -31,7 +30,7 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.MyVi
     }
 
     @Override
-    public StatisticAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ImpactAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.impact_view, parent, false);
 

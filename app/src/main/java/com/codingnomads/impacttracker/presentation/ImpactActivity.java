@@ -6,12 +6,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.codingnomads.impacttracker.R;
-import com.codingnomads.impacttracker.data.StatisticAdapter;
-import com.codingnomads.impacttracker.data.UriStatisticRepository;
-import com.codingnomads.impacttracker.logic.GetStatisticTask;
+import com.codingnomads.impacttracker.data.ImpactAdapter;
+import com.codingnomads.impacttracker.data.ImpactRepository;
+import com.codingnomads.impacttracker.logic.GetImpactTask;
 import com.codingnomads.impacttracker.logic.Impact;
-import com.codingnomads.impacttracker.logic.Statistic;
-import com.codingnomads.impacttracker.logic.StatisticService;
+import com.codingnomads.impacttracker.logic.ImpactService;
 
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -19,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class ImpactActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -31,18 +30,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mRecyclerView = findViewById(R.id.impactRecycler);
-        mAdapter = new StatisticAdapter(impacts);
+        mAdapter = new ImpactAdapter(impacts);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        StatisticService statisticService = new StatisticService(new UriStatisticRepository(createRestTemplate()));
+        ImpactService impactService = new ImpactService(new ImpactRepository(createRestTemplate()));
 
         mRecyclerView.setAdapter(mAdapter);
 
-        GetStatisticTask getStatisticTask = new GetStatisticTask(impacts,statisticService,mAdapter);
+        GetImpactTask getImpactTask = new GetImpactTask(impacts, impactService,mAdapter);
 
-        getStatisticTask.execute();
+        getImpactTask.execute();
     }
 
     private RestTemplate createRestTemplate() {
