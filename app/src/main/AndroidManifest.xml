@@ -24,6 +24,9 @@
         <activity
             android:name=".presentation.LoginActivity">
         </activity>
+        <activity
+            android:name=".presentation.CommitmentsActivity">
+        </activity>
     </application>
 
 </manifest>

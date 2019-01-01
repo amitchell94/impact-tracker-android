@@ -19,13 +19,13 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
+        setSupportActionBar((Toolbar) findViewById(R.id.home_toolbar));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.home_menu,menu);
+        inflater.inflate(R.menu.settings_menu,menu);
         return true;
     }
     @Override
@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 PopupMenu popupMenu = new PopupMenu(this,menuItemView);
                 MenuInflater inflater = popupMenu.getMenuInflater();
                 popupMenu.setOnMenuItemClickListener(this);
-                inflater.inflate(R.menu.actions, popupMenu.getMenu());
+                inflater.inflate(R.menu.home_actions, popupMenu.getMenu());
                 popupMenu.show();
                 return true;
 
