@@ -57,4 +57,8 @@ public class ImpactRepository {
                 .encode()
                 .toUri();
     }
+
+    public static void setStoredToken(String storedToken) {
+        ImpactRepository.storedToken = storedToken;
+    }
 }
