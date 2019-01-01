@@ -16,38 +16,38 @@ public class Commitment {
 
 
 
-    public Commitment() {
-    }
-
-    public Commitment(Integer id, LocalDate startDate, LocalDate endDate, Integer amountToReduceBy, Integer userId, Integer reductionId) {
-        this.id = id;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.amountToReduceBy = amountToReduceBy;
-        this.userId = userId;
-        this.reductionId = reductionId;
-    }
-
-
-    public Commitment(Integer userId, Integer reductionId, LocalDate startDate, LocalDate endDate, Integer amountToReduceBy) {
-        this.userId = userId;
-        this.reductionId = reductionId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.amountToReduceBy = amountToReduceBy;
-    }
-
-    @Override
-    public String toString() {
-        return "Commitment{" +
-                "id=" + id +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", amountToReduceBy=" + amountToReduceBy +
-                ", userId=" + userId +
-                ", reductionId=" + reductionId +
-                '}';
-    }
+   // public Commitment() {
+   // }
+//
+   // public Commitment(Integer id, LocalDate startDate, LocalDate endDate, Integer amountToReduceBy, Integer userId, Integer reductionId) {
+   //     this.id = id;
+   //     this.startDate = startDate;
+   //     this.endDate = endDate;
+   //     this.amountToReduceBy = amountToReduceBy;
+   //     this.userId = userId;
+   //     this.reductionId = reductionId;
+   // }
+//
+//
+   // public Commitment(Integer userId, Integer reductionId, LocalDate startDate, LocalDate endDate, Integer amountToReduceBy) {
+   //     this.userId = userId;
+   //     this.reductionId = reductionId;
+   //     this.startDate = startDate;
+   //     this.endDate = endDate;
+   //     this.amountToReduceBy = amountToReduceBy;
+   // }
+//
+  //  @Override
+  //  public String toString() {
+  //      return "Commitment{" +
+  //              "id=" + id +
+  //              ", startDate=" + startDate +
+  //              ", endDate=" + endDate +
+  //              ", amountToReduceBy=" + amountToReduceBy +
+  //              ", userId=" + userId +
+  //              ", reductionId=" + reductionId +
+  //              '}';
+  //  }
 
     public Integer getId() {
         return id;
@@ -97,22 +97,22 @@ public class Commitment {
         this.reductionId = reductionId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Commitment that = (Commitment) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(userId, that.userId) &&
-                Objects.equals(reductionId, that.reductionId) &&
-                Objects.equals(startDate, that.startDate) &&
-                Objects.equals(endDate, that.endDate) &&
-                Objects.equals(amountToReduceBy, that.amountToReduceBy);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, userId, reductionId, startDate, endDate, amountToReduceBy);
-    }
+  //  @Override
+  //  public boolean equals(Object o) {
+  //      if (this == o) return true;
+  //      if (o == null || getClass() != o.getClass()) return false;
+  //      Commitment that = (Commitment) o;
+  //      return Objects.equals(id, that.id) &&
+  //              Objects.equals(userId, that.userId) &&
+  //              Objects.equals(reductionId, that.reductionId) &&
+  //              Objects.equals(startDate, that.startDate) &&
+  //              Objects.equals(endDate, that.endDate) &&
+  //              Objects.equals(amountToReduceBy, that.amountToReduceBy);
+  //  }
+//
+  //  @Override
+  //  public int hashCode() {
+  //      return Objects.hash(id, userId, reductionId, startDate, endDate, amountToReduceBy);
+  //  }
 
 }
