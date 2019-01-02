@@ -24,7 +24,7 @@ public class CommitmentRepository {
 
     //method: get commitments
     public List<Commitment> getCommitments() {
-        Commitment[] allCommitments = restTemplate.getForObject(getUriWithToken("/api/commitments/", token), Commitment[].class);
+        Commitment[] allCommitments = restTemplate.getForObject(getUriWithToken("/api/commitments/", ImpactRepository.getStoredToken()), Commitment[].class);
         return Arrays.asList(allCommitments);
     }
 

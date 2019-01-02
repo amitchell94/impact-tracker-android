@@ -61,4 +61,8 @@ public class ImpactRepository {
     public static void setStoredToken(String storedToken) {
         ImpactRepository.storedToken = storedToken;
     }
+
+    public static String getStoredToken() {
+        return storedToken;
+    }
 }
