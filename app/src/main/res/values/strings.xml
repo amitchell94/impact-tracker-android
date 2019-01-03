@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Impact Tracker</string>
+    <string name="commitment">Commitment:</string>
+    <string name="end_date">End Date:</string>
+    <string name="start_date">Start Date:</string>
 </resources>
