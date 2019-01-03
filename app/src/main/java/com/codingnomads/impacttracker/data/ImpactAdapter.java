@@ -39,7 +39,7 @@ public class ImpactAdapter extends RecyclerView.Adapter<ImpactAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder( MyViewHolder holder, int position) {
-        holder.impact.setText(Long.toString(impacts.get(position).getAmount()) + impacts.get(position).getUnits());
+        holder.impact.setText(impacts.get(position).getAmount() + impacts.get(position).getUnits());
         holder.layout.setBackgroundResource(impacts.get(position).getBackgroundId());
     }
 
