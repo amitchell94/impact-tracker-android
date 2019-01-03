@@ -1,15 +1,15 @@
 package com.codingnomads.impacttracker.logic;
 
 public class Impact {
-    private Long amount;
+    private String amount;
     private String units;
     private int backgroundId;
 
-    public Long getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
