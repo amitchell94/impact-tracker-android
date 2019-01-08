@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CommitmentRepository {
 
-    RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplate = new RestTemplate();
     private static String token;
 
     public CommitmentRepository(RestTemplate restTemplate) {
@@ -26,8 +26,7 @@ public class CommitmentRepository {
     }
 
     public Commitment saveCommitment(Commitment commitment){
-        Commitment newCommitment = restTemplate.postForObject(getUriWithToken("/api/commitments/addcommitment", token), commitment, Commitment.class);
-        return newCommitment;
+        return restTemplate.postForObject(getUriWithToken("/api/commitments/addcommitment", ImpactRepository.getStoredToken()), commitment, Commitment.class);
     }
 
     public Boolean getToken(Credentials credentials) {
@@ -61,3 +60,22 @@ public class CommitmentRepository {
                 .toUri();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
