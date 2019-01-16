@@ -1,12 +1,12 @@
 package com.codingnomads.impacttracker.presentation;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -15,12 +15,13 @@ import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
 import com.codingnomads.impacttracker.data.ImpactRepository;
-import com.codingnomads.impacttracker.data.TokenRepository;
+import com.codingnomads.impacttracker.data.RegisterRepository;
 import com.codingnomads.impacttracker.logic.Credentials;
 import com.codingnomads.impacttracker.logic.LoginService;
 import com.codingnomads.impacttracker.logic.LoginTask;
+import com.codingnomads.impacttracker.logic.RegisterService;
+import com.codingnomads.impacttracker.logic.RegisterTask;
 
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -29,24 +30,24 @@ import java.lang.ref.WeakReference;
 
 import static com.codingnomads.impacttracker.presentation.RestTemplateProvider.createRestTemplate;
 
-public class LoginActivity extends AppCompatActivity {
-    private LoginService loginService;
+public class RegisterActivity extends AppCompatActivity {
+    private RegisterService registerService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
-        TextView registerText = findViewById(R.id.reg_text);
-        registerText.setPaintFlags(registerText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        TextView loginText = findViewById(R.id.reg_login);
+        loginText.setPaintFlags(loginText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-        EditText editText = findViewById(R.id.password);
+        EditText editText = findViewById(R.id.reg_password);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    findViewById(R.id.loginbutton).performClick();
+                    findViewById(R.id.reg_signup_button).performClick();
                     handled = true;
                 }
                 return handled;
@@ -54,33 +55,39 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void login(View view) {
+    public void registerUser(View view) {
 
-        TextView errorText = findViewById(R.id.error_text);
+        TextView errorText = findViewById(R.id.reg_error_text);
+        TextView successText = findViewById(R.id.reg_sucess_text);
+
         errorText.setText("");
+        successText.setText("");
+        successText.setPaintFlags(successText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-        Credentials credentials = getLoginCredentials();
 
-        loginService = new LoginService(new TokenRepository(createRestTemplate()));
+        Credentials credentials = getRegisterCredentials();
 
-        LoginTask loginTask = new LoginTask(loginService,new WeakReference<AppCompatActivity>(LoginActivity.this));
+        registerService = new RegisterService(new RegisterRepository(createRestTemplate()));
 
-        loginTask.execute(credentials);
+        RegisterTask registerTask = new RegisterTask(registerService,new WeakReference<AppCompatActivity>(RegisterActivity.this));
+
+        registerTask.execute(credentials);
+    }
+
+    public void login (View view) {
+        Intent loginIntent = new Intent(this,LoginActivity.class);
+        startActivity(loginIntent);
     }
 
     @NonNull
-    private Credentials getLoginCredentials() {
+    private Credentials getRegisterCredentials() {
         Credentials credentials = new Credentials();
 
-        EditText username = findViewById(R.id.username);
-        EditText password = findViewById(R.id.password);
+        EditText username = findViewById(R.id.reg_username);
+        EditText password = findViewById(R.id.reg_password);
 
         credentials.setUsername(username.getText().toString());
         credentials.setPassword(password.getText().toString());
         return credentials;
-    }
-    public void register (View view) {
-        Intent registerIntent = new Intent(this,RegisterActivity.class);
-        startActivity(registerIntent);
     }
 }

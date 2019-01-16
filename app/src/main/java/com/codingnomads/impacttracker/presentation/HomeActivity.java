@@ -45,7 +45,6 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
@@ -53,14 +52,19 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.login:
-                Intent intent = new Intent(this,LoginActivity.class);
-                startActivity(intent);
+                Intent loginintent = new Intent(this,LoginActivity.class);
+                startActivity(loginintent);
                 return true;
             case R.id.register:
-                //TODO: Need to implement registering user
+                Intent registerIntent = new Intent(this,RegisterActivity.class);
+                startActivity(registerIntent);
                 return true;
             default:
                 return false;
         }
+    }
+    public void signUp (View view) {
+        Intent registerIntent = new Intent(this,RegisterActivity.class);
+        startActivity(registerIntent);
     }
 }

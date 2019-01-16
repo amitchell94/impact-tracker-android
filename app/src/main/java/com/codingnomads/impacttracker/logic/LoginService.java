@@ -1,12 +1,13 @@
 package com.codingnomads.impacttracker.logic;
 
 import com.codingnomads.impacttracker.data.ImpactRepository;
+import com.codingnomads.impacttracker.data.TokenRepository;
 
 public class LoginService {
-    private ImpactRepository impactRepository;
+    private TokenRepository tokenRepository;
 
-    public LoginService(ImpactRepository impactRepository) {
-        this.impactRepository = impactRepository;
+    public LoginService(TokenRepository tokenRepository) {
+        this.tokenRepository = tokenRepository;
     }
 
     public Boolean getToken(Credentials credentials) {
@@ -14,6 +15,6 @@ public class LoginService {
                 "".equals(credentials.getPassword()) || "".equals(credentials.getUsername())) {
             return false;
         }
-        return impactRepository.getToken(credentials);
+        return tokenRepository.getToken(credentials);
     }
 }

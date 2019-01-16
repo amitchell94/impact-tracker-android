@@ -11,55 +11,25 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.codingnomads.impacttracker.data.TokenRepository.getStoredToken;
+import static com.codingnomads.impacttracker.data.UriMaker.getUri;
+
 public class CommitmentRepository {
 
-    private RestTemplate restTemplate = new RestTemplate();
-    private static String token;
-    private static final String LOCALHOST = "http://10.0.2.2:8080/";
-    private static final String PATH = "http://18.220.98.185/";
+    RestTemplate restTemplate = new RestTemplate();
 
     public CommitmentRepository(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     public List<Commitment> getCommitments() {
-        Commitment[] allCommitments = restTemplate.getForObject(getUriWithToken("/api/commitments/", ImpactRepository.getStoredToken()), Commitment[].class);
+        Commitment[] allCommitments = restTemplate.getForObject(getUri("/api/commitments/", getStoredToken()), Commitment[].class);
         return Arrays.asList(allCommitments);
     }
 
     public Commitment saveCommitment(Commitment commitment){
-        return restTemplate.postForObject(getUriWithToken("/api/commitments/addcommitment", ImpactRepository.getStoredToken()), commitment, Commitment.class);
+        Commitment newCommitment = restTemplate.postForObject(getUri("/api/commitments/addcommitment", getStoredToken()), commitment, Commitment.class);
+        return newCommitment;
     }
 
-    public Boolean getToken(Credentials credentials) {
-        try {
-            Token getTokenAttempt = restTemplate.postForObject(getUri("/api/authenticate"), credentials, Token.class);
-            token = getTokenAttempt.getValue();
-            if (getTokenAttempt.getValue() != null) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-    private URI getUri(String path) {
-        return UriComponentsBuilder.fromUriString(PATH)
-                .path(path)
-                .build()
-                .encode()
-                .toUri();
-    }
-
-    private URI getUriWithToken(String path, String value) {
-        return UriComponentsBuilder.fromUriString(PATH)
-                .path(path)
-                .queryParam("token", value)
-                .build()
-                .encode()
-                .toUri();
-    }
 }
-

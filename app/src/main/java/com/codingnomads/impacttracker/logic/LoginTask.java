@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
 import com.codingnomads.impacttracker.presentation.ImpactActivity;
-import com.codingnomads.impacttracker.presentation.LoginActivity;
 
 import java.lang.ref.WeakReference;
 

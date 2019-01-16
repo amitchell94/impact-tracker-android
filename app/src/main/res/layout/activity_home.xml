@@ -58,7 +58,8 @@
                     android:text="Sign Up!"
                     android:textAllCaps="false"
                     android:textSize="18dp"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:onClick="signUp"/>
             </LinearLayout>
         </RelativeLayout>
 
