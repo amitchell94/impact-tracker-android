@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
 
-import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientException;
 

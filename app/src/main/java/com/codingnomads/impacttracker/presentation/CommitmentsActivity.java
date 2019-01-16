@@ -1,10 +1,12 @@
 package com.codingnomads.impacttracker.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.codingnomads.impacttracker.R;
 import com.codingnomads.impacttracker.data.CommitmentAdapter;
@@ -40,6 +42,10 @@ public class CommitmentsActivity extends AppCompatActivity {
         commitmentListView.setAdapter(commitmentAdapter);
 
         new GetCommitmentsSyncTask(commitmentService, commitmentList, commitmentAdapter).execute();
+    }
+
+    public void addCommitment(View view) {
+        startActivity(new Intent(CommitmentsActivity.this, AddCommitmentsActivity.class));
     }
 }
 
