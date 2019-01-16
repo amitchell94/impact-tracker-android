@@ -6,6 +6,7 @@ public class SaveCommitmentTask extends AsyncTask<Commitment, Void, Commitment> 
 
     private CommitmentService commitmentService;
 
+
     public SaveCommitmentTask(CommitmentService commitmentService){
         this.commitmentService = commitmentService;
     }
@@ -13,6 +14,11 @@ public class SaveCommitmentTask extends AsyncTask<Commitment, Void, Commitment> 
     @Override
     protected Commitment doInBackground(Commitment[] commitments) {
         return commitmentService.saveCommitment(commitments[0]);
+    }
+
+    protected void onProgressUpdate(Integer... progress){}
+
+    protected void onPostExecute(Commitment commitment){
     }
 }
 
