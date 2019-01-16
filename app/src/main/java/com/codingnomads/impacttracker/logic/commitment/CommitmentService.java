@@ -1,4 +1,4 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.commitment;
 
 import com.codingnomads.impacttracker.data.CommitmentRepository;
 

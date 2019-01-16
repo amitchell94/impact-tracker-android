@@ -1,7 +1,7 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.login;
 
-import com.codingnomads.impacttracker.data.ImpactRepository;
 import com.codingnomads.impacttracker.data.TokenRepository;
+import com.codingnomads.impacttracker.logic.register.Credentials;
 
 public class LoginService {
     private TokenRepository tokenRepository;

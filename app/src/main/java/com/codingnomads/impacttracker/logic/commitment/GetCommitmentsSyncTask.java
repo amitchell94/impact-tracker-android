@@ -1,7 +1,10 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.commitment;
 
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+
+import com.codingnomads.impacttracker.logic.commitment.Commitment;
+import com.codingnomads.impacttracker.logic.commitment.CommitmentService;
 
 import java.util.List;
 

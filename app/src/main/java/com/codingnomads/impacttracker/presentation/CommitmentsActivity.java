@@ -1,7 +1,6 @@
 package com.codingnomads.impacttracker.presentation;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,12 +9,9 @@ import android.support.v7.widget.Toolbar;
 import com.codingnomads.impacttracker.R;
 import com.codingnomads.impacttracker.data.CommitmentAdapter;
 import com.codingnomads.impacttracker.data.CommitmentRepository;
-import com.codingnomads.impacttracker.logic.Commitment;
-import com.codingnomads.impacttracker.logic.CommitmentService;
-import com.codingnomads.impacttracker.logic.GetCommitmentsSyncTask;
-
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
+import com.codingnomads.impacttracker.logic.commitment.Commitment;
+import com.codingnomads.impacttracker.logic.commitment.CommitmentService;
+import com.codingnomads.impacttracker.logic.commitment.GetCommitmentsSyncTask;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.codingnomads.impacttracker.presentation;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,17 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
-import com.codingnomads.impacttracker.data.ImpactRepository;
 import com.codingnomads.impacttracker.data.RegisterRepository;
-import com.codingnomads.impacttracker.logic.Credentials;
-import com.codingnomads.impacttracker.logic.LoginService;
-import com.codingnomads.impacttracker.logic.LoginTask;
-import com.codingnomads.impacttracker.logic.RegisterService;
-import com.codingnomads.impacttracker.logic.RegisterTask;
-
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
+import com.codingnomads.impacttracker.logic.register.Credentials;
+import com.codingnomads.impacttracker.logic.register.RegisterService;
+import com.codingnomads.impacttracker.logic.register.RegisterTask;
 
 import java.lang.ref.WeakReference;
 

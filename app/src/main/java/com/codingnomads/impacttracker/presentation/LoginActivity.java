@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -14,16 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
-import com.codingnomads.impacttracker.data.ImpactRepository;
 import com.codingnomads.impacttracker.data.TokenRepository;
-import com.codingnomads.impacttracker.logic.Credentials;
-import com.codingnomads.impacttracker.logic.LoginService;
-import com.codingnomads.impacttracker.logic.LoginTask;
-
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
+import com.codingnomads.impacttracker.logic.register.Credentials;
+import com.codingnomads.impacttracker.logic.login.LoginService;
+import com.codingnomads.impacttracker.logic.login.LoginTask;
 
 import java.lang.ref.WeakReference;
 

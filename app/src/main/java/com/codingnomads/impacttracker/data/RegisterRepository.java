@@ -1,8 +1,7 @@
 package com.codingnomads.impacttracker.data;
 
-import com.codingnomads.impacttracker.logic.Credentials;
-import com.codingnomads.impacttracker.logic.Token;
-import com.codingnomads.impacttracker.logic.User;
+import com.codingnomads.impacttracker.logic.register.Credentials;
+import com.codingnomads.impacttracker.logic.register.User;
 
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;

@@ -1,17 +1,8 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.register;
 
-public class User {
-    private Integer id;
-    private String username;
-    private String password;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+public class Credentials {
+    String username;
+    String password;
 
     public String getUsername() {
         return username;

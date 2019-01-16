@@ -1,20 +1,14 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.register;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
-import android.view.View;
 import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
-import com.codingnomads.impacttracker.presentation.ImpactActivity;
-import com.codingnomads.impacttracker.presentation.LoginActivity;
-import com.codingnomads.impacttracker.presentation.RegisterActivity;
 
+import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientException;
 
 import java.lang.ref.WeakReference;
@@ -49,11 +43,13 @@ public class RegisterTask extends AsyncTask<Credentials,Void,Boolean> {
         try {
             if (registerService.registerUser(credentials[0])) {
                 successText.setText("Account created! Click here to sign in");
-            } else {
-                errorText.setText("Username already exists");
             }
-        } catch (RestClientException e) {
+        } catch (ResourceAccessException e) {
+            e.printStackTrace();
             errorText.setText("Unable to connect. Try again later");
+        } catch (RestClientException e) {
+            e.printStackTrace();
+            errorText.setText("Username already exists");
         }
         return false;
     }

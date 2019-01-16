@@ -15,11 +15,9 @@ import android.view.View;
 import com.codingnomads.impacttracker.R;
 import com.codingnomads.impacttracker.data.ImpactAdapter;
 import com.codingnomads.impacttracker.data.ImpactRepository;
-import com.codingnomads.impacttracker.data.TokenRepository;
-import com.codingnomads.impacttracker.logic.GetImpactTask;
-import com.codingnomads.impacttracker.logic.Impact;
-import com.codingnomads.impacttracker.logic.ImpactService;
-import com.codingnomads.impacttracker.logic.Token;
+import com.codingnomads.impacttracker.logic.impact.GetImpactTask;
+import com.codingnomads.impacttracker.logic.impact.Impact;
+import com.codingnomads.impacttracker.logic.impact.ImpactService;
 
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;

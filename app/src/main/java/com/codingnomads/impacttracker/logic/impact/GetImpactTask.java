@@ -1,4 +1,4 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.impact;
 
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;

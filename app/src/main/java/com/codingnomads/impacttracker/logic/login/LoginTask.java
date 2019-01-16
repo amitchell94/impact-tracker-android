@@ -1,4 +1,4 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.login;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
+import com.codingnomads.impacttracker.logic.register.Credentials;
 import com.codingnomads.impacttracker.presentation.ImpactActivity;
 
 import java.lang.ref.WeakReference;

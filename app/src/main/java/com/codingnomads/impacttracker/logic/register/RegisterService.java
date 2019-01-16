@@ -1,6 +1,5 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.register;
 
-import com.codingnomads.impacttracker.data.ImpactRepository;
 import com.codingnomads.impacttracker.data.RegisterRepository;
 
 import org.springframework.web.client.RestClientException;

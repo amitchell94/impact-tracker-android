@@ -1,8 +1,17 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.register;
 
-public class Credentials {
-    String username;
-    String password;
+public class User {
+    private Integer id;
+    private String username;
+    private String password;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

@@ -1,10 +1,10 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.impact;
 
 import com.codingnomads.impacttracker.data.ImpactRepository;
 
 import java.util.List;
 
-import static com.codingnomads.impacttracker.logic.ImpactUtils.transformStatisticToImpactList;
+import static com.codingnomads.impacttracker.logic.impact.ImpactUtils.transformStatisticToImpactList;
 
 public class ImpactService {
 
