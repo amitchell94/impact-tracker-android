@@ -27,6 +27,9 @@
         <activity
             android:name=".presentation.CommitmentsActivity">
         </activity>
+        <activity
+            android:name=".presentation.AddCommitmentsActivity">
+        </activity>
     </application>
 
 </manifest>

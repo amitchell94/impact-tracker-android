@@ -57,4 +57,15 @@ public class Commitment {
         this.amountToReduceBy = amountToReduceBy;
     }
 
+    @Override
+    public String toString() {
+        return "Commitment{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", reductionId=" + reductionId +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", amountToReduceBy=" + amountToReduceBy +
+                '}';
+    }
 }

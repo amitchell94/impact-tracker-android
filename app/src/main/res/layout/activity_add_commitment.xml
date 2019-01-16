@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="75dp"
+        android:paddingTop="75dp"
+        android:paddingRight="75dp"
+        android:paddingBottom="10dp">
+
+        <EditText
+            android:id="@+id/reductionId_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Reduction"
+            android:inputType="number"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="55dp" />
+
+        <EditText
+            android:id="@+id/startDate_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Start Date (YYYY-MM-DD)"
+            android:inputType="datetime"
+            tools:layout_editor_absoluteX="85dp"
+            tools:layout_editor_absoluteY="115dp" />
+
+        <EditText
+            android:id="@+id/endDate_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="End Date (YYYY-MM-DD)"
+            android:inputType="datetime"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="174dp" />
+
+
+        <Button
+            android:id="@+id/add_commitment_button_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="addNewCommitment"
+            android:text="Add Commitment"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="411dp" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

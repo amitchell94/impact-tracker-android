@@ -13,8 +13,10 @@ import java.util.List;
 
 public class CommitmentRepository {
 
-    RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplate = new RestTemplate();
     private static String token;
+    private static final String LOCALHOST = "http://10.0.2.2:8080/";
+    private static final String PATH = "http://18.220.98.185/";
 
     public CommitmentRepository(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -26,8 +28,7 @@ public class CommitmentRepository {
     }
 
     public Commitment saveCommitment(Commitment commitment){
-        Commitment newCommitment = restTemplate.postForObject(getUriWithToken("/api/commitments/addcommitment", token), commitment, Commitment.class);
-        return newCommitment;
+        return restTemplate.postForObject(getUriWithToken("/api/commitments/addcommitment", ImpactRepository.getStoredToken()), commitment, Commitment.class);
     }
 
     public Boolean getToken(Credentials credentials) {
@@ -45,7 +46,7 @@ public class CommitmentRepository {
         }
     }
     private URI getUri(String path) {
-        return UriComponentsBuilder.fromUriString("http:///18.220.98.185/")
+        return UriComponentsBuilder.fromUriString(PATH)
                 .path(path)
                 .build()
                 .encode()
@@ -53,7 +54,7 @@ public class CommitmentRepository {
     }
 
     private URI getUriWithToken(String path, String value) {
-        return UriComponentsBuilder.fromUriString("http://18.220.98.185/")
+        return UriComponentsBuilder.fromUriString(PATH)
                 .path(path)
                 .queryParam("token", value)
                 .build()
@@ -61,3 +62,4 @@ public class CommitmentRepository {
                 .toUri();
     }
 }
+

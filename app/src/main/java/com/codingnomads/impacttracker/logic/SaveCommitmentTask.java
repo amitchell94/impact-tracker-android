@@ -2,10 +2,12 @@ package com.codingnomads.impacttracker.logic;
 
 import android.os.AsyncTask;
 
-public class NewCommitmentSyncTask extends AsyncTask<Commitment, Void, Commitment> {
+public class SaveCommitmentTask extends AsyncTask<Commitment, Void, Commitment> {
+
     private CommitmentService commitmentService;
 
-    public NewCommitmentSyncTask(CommitmentService commitmentService) {
+
+    public SaveCommitmentTask(CommitmentService commitmentService){
         this.commitmentService = commitmentService;
     }
 
@@ -14,4 +16,30 @@ public class NewCommitmentSyncTask extends AsyncTask<Commitment, Void, Commitmen
         return commitmentService.saveCommitment(commitments[0]);
     }
 
+    protected void onProgressUpdate(Integer... progress){}
+
+    protected void onPostExecute(Commitment commitment){
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

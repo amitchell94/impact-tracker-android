@@ -15,6 +15,8 @@ public class ImpactRepository {
 
 
     private RestTemplate restTemplate;
+    private static final String LOCALHOST = "http://10.0.2.2:8080/";
+    private static final String PATH = "http://18.220.98.185/";
 
     private static String storedToken;
     public ImpactRepository(RestTemplate restTemplate) {
@@ -42,7 +44,7 @@ public class ImpactRepository {
     }
 
     private URI getUri(String path) {
-        return UriComponentsBuilder.fromUriString("http:///18.220.98.185/")
+        return UriComponentsBuilder.fromUriString(PATH)
                 .path(path)
                 .build()
                 .encode()
@@ -50,7 +52,7 @@ public class ImpactRepository {
     }
 
     private URI getUriWithToken(String path, String value) {
-        return UriComponentsBuilder.fromUriString("http://18.220.98.185/")
+        return UriComponentsBuilder.fromUriString(PATH)
                 .path(path)
                 .queryParam("token",value)
                 .build()
