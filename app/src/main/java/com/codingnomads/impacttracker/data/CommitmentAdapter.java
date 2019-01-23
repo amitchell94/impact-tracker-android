@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
-import com.codingnomads.impacttracker.logic.Commitment;
+import com.codingnomads.impacttracker.logic.commitment.Commitment;
 
 import java.util.List;
 

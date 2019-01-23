@@ -11,9 +11,9 @@ import android.widget.EditText;
 
 import com.codingnomads.impacttracker.R;
 import com.codingnomads.impacttracker.data.CommitmentRepository;
-import com.codingnomads.impacttracker.logic.Commitment;
-import com.codingnomads.impacttracker.logic.CommitmentService;
-import com.codingnomads.impacttracker.logic.SaveCommitmentTask;
+import com.codingnomads.impacttracker.logic.commitment.Commitment;
+import com.codingnomads.impacttracker.logic.commitment.CommitmentService;
+import com.codingnomads.impacttracker.logic.commitment.SaveCommitmentTask;
 
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;

@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
-import com.codingnomads.impacttracker.logic.Impact;
+import com.codingnomads.impacttracker.logic.impact.Impact;
 
 import java.util.List;
 

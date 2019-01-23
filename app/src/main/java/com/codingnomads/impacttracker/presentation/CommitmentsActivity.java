@@ -2,7 +2,6 @@ package com.codingnomads.impacttracker.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,15 +11,14 @@ import android.view.View;
 import com.codingnomads.impacttracker.R;
 import com.codingnomads.impacttracker.data.CommitmentAdapter;
 import com.codingnomads.impacttracker.data.CommitmentRepository;
-import com.codingnomads.impacttracker.logic.Commitment;
-import com.codingnomads.impacttracker.logic.CommitmentService;
-import com.codingnomads.impacttracker.logic.GetCommitmentsSyncTask;
-
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
+import com.codingnomads.impacttracker.logic.commitment.Commitment;
+import com.codingnomads.impacttracker.logic.commitment.CommitmentService;
+import com.codingnomads.impacttracker.logic.commitment.GetCommitmentsSyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.codingnomads.impacttracker.presentation.RestTemplateProvider.createRestTemplate;
 
 public class CommitmentsActivity extends AppCompatActivity {
 
@@ -44,13 +42,6 @@ public class CommitmentsActivity extends AppCompatActivity {
         commitmentListView.setAdapter(commitmentAdapter);
 
         new GetCommitmentsSyncTask(commitmentService, commitmentList, commitmentAdapter).execute();
-    }
-
-    @NonNull
-    private RestTemplate createRestTemplate() {
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-        return restTemplate;
     }
 
     public void addCommitment(View view) {

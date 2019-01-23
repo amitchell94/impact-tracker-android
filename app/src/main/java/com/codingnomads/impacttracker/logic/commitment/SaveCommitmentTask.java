@@ -1,4 +1,4 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.commitment;
 
 import android.os.AsyncTask;
 

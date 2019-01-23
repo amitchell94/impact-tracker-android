@@ -1,4 +1,4 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.register;
 
 public class Credentials {
     String username;

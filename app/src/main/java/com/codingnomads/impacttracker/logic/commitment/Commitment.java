@@ -1,4 +1,4 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.commitment;
 
 public class Commitment {
 

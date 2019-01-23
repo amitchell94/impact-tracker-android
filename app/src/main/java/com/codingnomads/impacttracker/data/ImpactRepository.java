@@ -1,22 +1,16 @@
 package com.codingnomads.impacttracker.data;
 
-import android.content.SharedPreferences;
-
-import com.codingnomads.impacttracker.logic.Credentials;
-import com.codingnomads.impacttracker.logic.Statistic;
-import com.codingnomads.impacttracker.logic.Token;
+import com.codingnomads.impacttracker.logic.impact.Statistic;
 
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
+import static com.codingnomads.impacttracker.data.TokenRepository.getStoredToken;
+import static com.codingnomads.impacttracker.data.UriMaker.getUri;
 
 public class ImpactRepository {
 
 
     private RestTemplate restTemplate;
-    private static final String LOCALHOST = "http://10.0.2.2:8080/";
-    private static final String PATH = "http://18.220.98.185/";
 
     private static String storedToken;
     public ImpactRepository(RestTemplate restTemplate) {
@@ -24,47 +18,8 @@ public class ImpactRepository {
     }
 
     public Statistic getImpact() {
-        Statistic impact = restTemplate.getForObject(getUriWithToken("api/impact/total/",storedToken), Statistic.class);
+        Statistic impact = restTemplate.getForObject(getUri("api/impact/total/", getStoredToken()), Statistic.class);
         return impact;
     }
 
-    public Boolean getToken(Credentials credentials) {
-        try {
-            Token token = restTemplate.postForObject(getUri("/api/authenticate"), credentials, Token.class);
-            storedToken = token.getValue();
-            if (token.getValue() != null) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    private URI getUri(String path) {
-        return UriComponentsBuilder.fromUriString(PATH)
-                .path(path)
-                .build()
-                .encode()
-                .toUri();
-    }
-
-    private URI getUriWithToken(String path, String value) {
-        return UriComponentsBuilder.fromUriString(PATH)
-                .path(path)
-                .queryParam("token",value)
-                .build()
-                .encode()
-                .toUri();
-    }
-
-    public static void setStoredToken(String storedToken) {
-        ImpactRepository.storedToken = storedToken;
-    }
-
-    public static String getStoredToken() {
-        return storedToken;
-    }
 }

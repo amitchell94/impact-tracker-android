@@ -1,4 +1,4 @@
-package com.codingnomads.impacttracker.logic;
+package com.codingnomads.impacttracker.logic.impact;
 
 import com.codingnomads.impacttracker.R;
 
