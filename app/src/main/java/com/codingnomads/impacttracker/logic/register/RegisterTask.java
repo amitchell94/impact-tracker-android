@@ -1,11 +1,14 @@
 package com.codingnomads.impacttracker.logic.register;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
+import com.codingnomads.impacttracker.presentation.ImpactActivity;
 
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientException;
@@ -51,5 +54,16 @@ public class RegisterTask extends AsyncTask<Credentials,Void,Boolean> {
             errorText.setText("Username already exists");
         }
         return false;
+    }
+
+    @Override
+    protected void onPostExecute(Boolean aBoolean) {
+        super.onPostExecute(aBoolean);
+        Activity activity = weakReference.get();
+        Button registerButton = activity.findViewById(R.id.reg_signup_button);
+        if(!aBoolean) {
+            registerButton.setText("Sign Up");
+            registerButton.setEnabled(true);
+        }
     }
 }

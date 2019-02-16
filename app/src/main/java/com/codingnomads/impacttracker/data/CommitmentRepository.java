@@ -1,6 +1,8 @@
 package com.codingnomads.impacttracker.data;
 
 import com.codingnomads.impacttracker.logic.commitment.Commitment;
+import com.codingnomads.impacttracker.logic.commitment.CommitmentPresentation;
+import com.codingnomads.impacttracker.logic.commitment.CommitmentWithReduction;
 
 import org.springframework.web.client.RestTemplate;
 
@@ -18,8 +20,8 @@ public class CommitmentRepository {
         this.restTemplate = restTemplate;
     }
 
-    public List<Commitment> getCommitments() {
-        Commitment[] allCommitments = restTemplate.getForObject(getUri("/api/commitments/", getStoredToken()), Commitment[].class);
+    public List<CommitmentWithReduction> getCommitments() {
+        CommitmentWithReduction[] allCommitments = restTemplate.getForObject(getUri("/api/commitments/", getStoredToken()), CommitmentWithReduction[].class);
         return Arrays.asList(allCommitments);
     }
 

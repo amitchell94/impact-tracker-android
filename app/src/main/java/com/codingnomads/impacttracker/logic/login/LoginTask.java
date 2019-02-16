@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
@@ -31,12 +32,15 @@ public class LoginTask extends AsyncTask<Credentials,Void,Boolean> {
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
         Activity activity = weakReference.get();
+        Button loginButton = activity.findViewById(R.id.loginbutton);
         if(!aBoolean) {
 
             if (activity != null) {
                 TextView errorText = activity.findViewById(R.id.error_text);
                 errorText.setText("Invalid login credentials");
             }
+            loginButton.setText("Login");
+            loginButton.setEnabled(true);
         } else {
             activity.startActivity(new Intent(activity,ImpactActivity.class));
         }
