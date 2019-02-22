@@ -14,33 +14,40 @@
         android:paddingRight="75dp"
         android:paddingBottom="10dp">
 
-        <EditText
+        <Spinner
             android:id="@+id/reductionId_input"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Reduction"
-            android:inputType="number"
-            tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="55dp" />
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/startDate_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:ems="10"
-            android:hint="Start Date (YYYY-MM-DD)"
-            android:inputType="datetime"
+            android:focusable="false"
+            android:hint="Start Date"
             tools:layout_editor_absoluteX="85dp"
             tools:layout_editor_absoluteY="115dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ongoing commitment?" />
+
+        <Switch
+            android:id="@+id/ongoingToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/endDate_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:ems="10"
-            android:hint="End Date (YYYY-MM-DD)"
-            android:inputType="datetime"
+            android:focusable="false"
+            android:hint="End Date"
             tools:layout_editor_absoluteX="84dp"
             tools:layout_editor_absoluteY="174dp" />
 
