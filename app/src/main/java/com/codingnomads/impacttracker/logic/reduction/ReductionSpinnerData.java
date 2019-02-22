@@ -6,7 +6,7 @@ import java.util.Map;
 public class ReductionSpinnerData {
 
     private List<String> reductionStrings;
-    private Map<String,Integer> reductionIdMap;
+    private Map<String,Reduction> reductionMap;
 
     public List<String> getReductionStrings() {
         return reductionStrings;
@@ -16,11 +16,11 @@ public class ReductionSpinnerData {
         this.reductionStrings = reductionStrings;
     }
 
-    public Map<String, Integer> getReductionIdMap() {
-        return reductionIdMap;
+    public Map<String, Reduction> getReductionMap() {
+        return reductionMap;
     }
 
-    public void setReductionIdMap(Map<String, Integer> reductionIdMap) {
-        this.reductionIdMap = reductionIdMap;
+    public void setReductionMap(Map<String, Reduction> reductionMap) {
+        this.reductionMap = reductionMap;
     }
 }

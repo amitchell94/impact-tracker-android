@@ -1,11 +1,7 @@
 package com.codingnomads.impacttracker.logic.reduction;
 
 import android.os.AsyncTask;
-import android.support.v7.widget.RecyclerView;
 import android.widget.ArrayAdapter;
-
-import com.codingnomads.impacttracker.logic.commitment.CommitmentService;
-import com.codingnomads.impacttracker.logic.commitment.CommitmentWithReduction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,11 +25,11 @@ public class GetReductionsSyncTask extends AsyncTask<String, Void, ReductionSpin
         List<Reduction> reductionList = reductionService.getReductions();
 
         reductionSpinnerData.setReductionStrings(new ArrayList<String>());
-        reductionSpinnerData.setReductionIdMap(new HashMap<String, Integer>());
+        reductionSpinnerData.setReductionMap(new HashMap<String, Reduction>());
 
         for (Reduction reduction: reductionList) {
             reductionSpinnerData.getReductionStrings().add(reduction.getReduction());
-            reductionSpinnerData.getReductionIdMap().put(reduction.getReduction(),reduction.getId());
+            reductionSpinnerData.getReductionMap().put(reduction.getReduction(),reduction);
         }
         return reductionSpinnerData;
     }
@@ -41,8 +37,8 @@ public class GetReductionsSyncTask extends AsyncTask<String, Void, ReductionSpin
     @Override
     protected void onPostExecute(ReductionSpinnerData reductionData) {
         super.onPostExecute(reductionSpinnerData);
-        reductionSpinnerData.getReductionIdMap().clear();
-        reductionSpinnerData.getReductionIdMap().putAll(reductionData.getReductionIdMap());
+        reductionSpinnerData.getReductionMap().clear();
+        reductionSpinnerData.getReductionMap().putAll(reductionData.getReductionMap());
         reductionSpinnerData.getReductionStrings().clear();
         reductionSpinnerData.getReductionStrings().addAll(reductionData.getReductionStrings());
         mAdapter.notifyDataSetChanged();

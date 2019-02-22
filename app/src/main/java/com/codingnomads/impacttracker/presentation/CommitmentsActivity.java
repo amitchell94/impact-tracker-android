@@ -48,6 +48,10 @@ public class CommitmentsActivity extends AppCompatActivity {
     public void addCommitment(View view) {
         startActivity(new Intent(CommitmentsActivity.this, AddCommitmentsActivity.class));
     }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(CommitmentsActivity.this, ImpactActivity.class));
+    }
 }
 
 

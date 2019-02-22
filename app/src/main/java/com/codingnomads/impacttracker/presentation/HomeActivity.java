@@ -52,8 +52,8 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.login:
-                Intent loginintent = new Intent(this,LoginActivity.class);
-                startActivity(loginintent);
+                Intent loginIntent = new Intent(this,LoginActivity.class);
+                startActivity(loginIntent);
                 return true;
             case R.id.register:
                 Intent registerIntent = new Intent(this,RegisterActivity.class);

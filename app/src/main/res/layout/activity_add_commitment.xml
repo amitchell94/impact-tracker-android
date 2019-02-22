@@ -3,61 +3,137 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <TextView
+        android:fontFamily="@font/lato_bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Commitment"
+        android:textColor="@android:color/black"
+        android:textAlignment="center"
+        android:textFontWeight="700"
+        android:textSize="32dp"
+        android:paddingTop="30dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="75dp"
-        android:paddingTop="75dp"
-        android:paddingRight="75dp"
-        android:paddingBottom="10dp">
-
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I am committed to "
+            android:textSize="25dp"/>
         <Spinner
             android:id="@+id/reductionId_input"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="75dp"/>
 
-        <EditText
-            android:id="@+id/startDate_input"
+        <LinearLayout
+            android:id="@+id/amountSelection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="by "
+                android:textSize="25dp"/>
+            <EditText
+                android:id="@+id/amountInput"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textSize="25dp"/>
+            <TextView
+                android:id="@+id/amountUnits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" units"
+                android:textSize="25dp"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="from "
+            android:textSize="25dp"/>
+        <EditText
+            android:id="@+id/startDate_input"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:clickable="true"
             android:ems="10"
             android:focusable="false"
             android:hint="Start Date"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="115dp" />
+            android:textSize="25dp"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/endDateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ongoing commitment?" />
-
-        <Switch
-            android:id="@+id/ongoingToggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
+            android:layout_marginRight="25dp"
+            android:text="until"
+            android:textSize="25dp"/>
         <EditText
             android:id="@+id/endDate_input"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:ems="10"
             android:focusable="false"
+            android:textAlignment="center"
             android:hint="End Date"
-            tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="174dp" />
+            android:textSize="25dp" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:text="Ongoing commitment?"
+                android:textSize="25dp"
+                />
 
-
+            <Switch
+                android:id="@+id/ongoingToggle"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
         <Button
             android:id="@+id/add_commitment_button_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:onClick="addNewCommitment"
             android:text="Add Commitment"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/button_shape"
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="411dp" />
     </LinearLayout>

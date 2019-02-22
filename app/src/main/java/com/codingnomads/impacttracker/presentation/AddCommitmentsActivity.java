@@ -7,13 +7,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
 import com.codingnomads.impacttracker.data.CommitmentRepository;
@@ -29,11 +32,11 @@ import com.codingnomads.impacttracker.logic.reduction.ReductionSpinnerData;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 public class AddCommitmentsActivity extends AppCompatActivity {
@@ -42,6 +45,7 @@ public class AddCommitmentsActivity extends AppCompatActivity {
 
     Commitment commitment = new Commitment();
     ReductionSpinnerData reductionSpinnerData = new ReductionSpinnerData();
+    final Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,91 +53,35 @@ public class AddCommitmentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_commitment);
 
         Button createNewCommitmentButton = findViewById(R.id.add_commitment_button_input);
-        createNewCommitmentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                commitment = getCommitmentInputs();
-                new SaveCommitmentTask(commitmentService).execute(commitment);
-            }
-        });
+        createNewCommitmentButton.setOnClickListener(createButtonOnClickListener());
 
-        final Calendar myCalendar = Calendar.getInstance();
         final EditText startDate = findViewById(R.id.startDate_input);
         startDate.setKeyListener(null);
 
-        final DatePickerDialog.OnDateSetListener startDatePicker = new DatePickerDialog.OnDateSetListener() {
+        final DatePickerDialog.OnDateSetListener startDatePicker = createDateListener(startDate);
+        startDate.setOnClickListener(createDateOnClickListener(startDatePicker));
 
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // TODO Auto-generated method stub
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel(startDate, myCalendar);
-            }
-
-        };
-
-        startDate.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new DatePickerDialog(AddCommitmentsActivity.this, startDatePicker, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
         final EditText endDate = findViewById(R.id.endDate_input);
-
-        Switch toggle = (Switch) findViewById(R.id.ongoingToggle);
-        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    // The toggle is enabled
-                    endDate.setText("");
-                    endDate.setVisibility(View.INVISIBLE);
-                } else {
-                    endDate.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-
-
         endDate.setKeyListener(null);
 
-        final DatePickerDialog.OnDateSetListener endDatePicker = new DatePickerDialog.OnDateSetListener() {
+        final DatePickerDialog.OnDateSetListener endDatePicker = createDateListener(endDate);
+        endDate.setOnClickListener(createDateOnClickListener(endDatePicker));
 
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // TODO Auto-generated method stub
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel(endDate, myCalendar);
-            }
+        LinearLayout endDateLayout = findViewById(R.id.endDateLayout);
+        endDateLayout.setVisibility(View.GONE);
+        Switch toggle = findViewById(R.id.ongoingToggle);
+        toggle.setOnCheckedChangeListener(createSwitchListener(endDate, endDateLayout));
 
-        };
+        Spinner reductionInput = findViewById(R.id.reductionId_input);
+        final LinearLayout amountSelection = findViewById(R.id.amountSelection);
+        final TextView amountUnits = findViewById(R.id.amountUnits);
+        final AdapterView.OnItemSelectedListener itemSelectedListener = createItemSelectedListener(amountSelection, amountUnits);
+        reductionInput.setOnItemSelectedListener(itemSelectedListener);
 
-        endDate.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new DatePickerDialog(AddCommitmentsActivity.this, endDatePicker, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-
-        Spinner reductionInput = (Spinner) findViewById(R.id.reductionId_input);
-
-        reductionSpinnerData.setReductionIdMap(new HashMap<String, Integer>());
+        reductionSpinnerData.setReductionMap(new HashMap<String, Reduction>());
         reductionSpinnerData.setReductionStrings(new ArrayList<String>());
 
-        final ArrayAdapter<String> reductionAdapter = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> reductionAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, reductionSpinnerData.getReductionStrings());
         reductionInput.setAdapter(reductionAdapter);
 
@@ -145,11 +93,9 @@ public class AddCommitmentsActivity extends AppCompatActivity {
 
         commitmentService = new CommitmentService(new CommitmentRepository(createRestTemplate()));
 
-        SaveCommitmentTask saveCommitmentTask = new SaveCommitmentTask(commitmentService);
+        SaveCommitmentTask saveCommitmentTask = new SaveCommitmentTask(commitmentService, new WeakReference<AppCompatActivity>(AddCommitmentsActivity.this));
 
         saveCommitmentTask.execute(commitment);
-
-        startActivity(new Intent(AddCommitmentsActivity.this, CommitmentsActivity.class));
     }
 
     @NonNull
@@ -159,10 +105,15 @@ public class AddCommitmentsActivity extends AppCompatActivity {
         Spinner reduction = findViewById(R.id.reductionId_input);
         EditText startDate = findViewById(R.id.startDate_input);
         EditText endDate = findViewById(R.id.endDate_input);
+        LinearLayout amountSelection = findViewById(R.id.amountSelection);
+        EditText amountInput = findViewById(R.id.amountInput);
 
-        commitment.setReductionId(reductionSpinnerData.getReductionIdMap().get(reduction.getSelectedItem()));
+        commitment.setReductionId(reductionSpinnerData.getReductionMap().get(reduction.getSelectedItem()).getId());
         commitment.setStartDate(startDate.getText().toString());
         commitment.setEndDate(endDate.getText().toString());
+        if (amountSelection.getVisibility() != View.GONE) {
+            commitment.setAmountToReduceBy(Integer.parseInt(amountInput.getText().toString()));
+        }
 
         return commitment;
     }
@@ -179,6 +130,87 @@ public class AddCommitmentsActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         editText.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private DatePickerDialog.OnDateSetListener createDateListener(final EditText editText) {
+        final DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel(editText, myCalendar);
+            }
+
+        };
+        return dateSetListener;
+    }
+
+    private View.OnClickListener createButtonOnClickListener() {
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                commitment = getCommitmentInputs();
+                new SaveCommitmentTask(commitmentService,
+                        new WeakReference<AppCompatActivity>(AddCommitmentsActivity.this)).execute(commitment);
+            }
+        };
+        return onClickListener;
+    }
+
+    private View.OnClickListener createDateOnClickListener(final DatePickerDialog.OnDateSetListener onDateSetListener) {
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(AddCommitmentsActivity.this, onDateSetListener, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        };
+        return onClickListener;
+    }
+
+    private CompoundButton.OnCheckedChangeListener createSwitchListener(final EditText endDate, final LinearLayout endDateLayout) {
+        CompoundButton.OnCheckedChangeListener onCheckedChangeListener =
+                new CompoundButton.OnCheckedChangeListener() {
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            endDate.setText("");
+                            endDateLayout.setVisibility(View.GONE);
+                        } else {
+                            endDateLayout.setVisibility(View.VISIBLE);
+                        }
+                    }
+                };
+        return onCheckedChangeListener;
+    }
+
+    private AdapterView.OnItemSelectedListener createItemSelectedListener(final LinearLayout amountSelection, final TextView amountUnits) {
+        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextSize(25);
+                ((TextView) parent.getChildAt(0)).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+                String selectedReductionString = (String) parent.getItemAtPosition(position);
+                Reduction selectedReduction = reductionSpinnerData.getReductionMap().get(selectedReductionString);
+                if (selectedReduction.getAveragePerDay() != 1) {
+                    amountSelection.setVisibility(View.VISIBLE);
+                    amountUnits.setText(selectedReduction.getUnit() + " per day");
+                } else {
+                    amountSelection.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+        return itemSelectedListener;
     }
 }
 
