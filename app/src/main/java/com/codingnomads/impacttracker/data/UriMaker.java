@@ -6,7 +6,7 @@ import java.net.URI;
 
 public class UriMaker {
     public static URI getUri(String path) {
-        return UriComponentsBuilder.fromUriString("http:///18.220.98.185/")
+        return UriComponentsBuilder.fromUriString("http://3.16.41.224/")
                 .path(path)
                 .build()
                 .encode()
@@ -14,7 +14,7 @@ public class UriMaker {
     }
 
     public static URI getUri(String path, String value) {
-        return UriComponentsBuilder.fromUriString("http://18.220.98.185/")
+        return UriComponentsBuilder.fromUriString("http://3.16.41.224/")
                 .path(path)
                 .queryParam("token",value)
                 .build()

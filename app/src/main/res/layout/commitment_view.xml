@@ -1,106 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/commitment_item_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_gravity="center"
-        android:layout_margin="15dp"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="10dp">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/commitment_attributes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:padding="16dp">
 
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/labels_for_name_start_end_dates"
+            <TextView
+                android:id="@+id/commitment_name_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="1dp"
-                android:paddingRight="16dp">
+                android:layout_marginLeft="5sp"
+                android:text="Veganism"
+                android:textSize="20sp" />
 
-
-                <TextView
-                    android:layout_width="95sp"
-                    android:layout_height="match_parent"
-                    android:text="@string/commitment"
-                    android:textSize="15sp"
-                    android:gravity="start"
-                    android:textStyle="bold"
-                    android:layout_margin="5sp"
-
-                    />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <TextView
                     android:layout_width="80sp"
-                    android:layout_height="match_parent"
-                    android:text="@string/start_date"
-                    android:textSize="15sp"
-                    android:gravity="center_horizontal"
-                    android:textStyle="bold"
-                    android:layout_margin="5sp"
-                    />
-
-                <TextView
-                    android:layout_width="80sp"
-                    android:layout_height="match_parent"
-                    android:text="@string/end_date"
-                    android:textSize="15sp"
-                    android:gravity="end"
-                    android:textStyle="bold"
-                    android:layout_margin="5sp"
-                    />
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/commitment_name_start_end_dates"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="16dp">
-
-                <TextView
-                    android:id="@+id/commitment_name_textview"
-                    android:layout_width="85sp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5sp"
-                    android:textSize="15sp"
-                    />
+                    android:layout_marginLeft="5sp"
+                    android:text="@string/start_date"
+                    android:textColor="#aaaaaa"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/commitment_startDate_textview"
-                    android:layout_width="85sp"
+                    android:layout_width="200sp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5sp"
-                    android:textSize="15sp"
-                    android:gravity="center_horizontal"
-                    />
+                    android:layout_marginLeft="5sp"
+                    android:textColor="#aaaaaa"
+                    android:text="2018-09-09"
+
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="80sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:text="@string/end_date"
+                    android:textColor="#aaaaaa"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/commitment_endDate_textview"
-                    android:layout_width="85sp"
+                    android:layout_width="200sp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5sp"
-                    android:textSize="15sp"
-                    />
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:text="2018-09-09"
+                    android:textColor="#aaaaaa"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
         </LinearLayout>
+
     </android.support.v7.widget.CardView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f8f9fa" />
 </LinearLayout>

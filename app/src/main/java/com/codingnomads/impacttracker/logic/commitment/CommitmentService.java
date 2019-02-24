@@ -12,7 +12,7 @@ public class CommitmentService {
         this.commitmentRepository = commitmentRepository;
     }
 
-    public List<Commitment> getCommitments(){
+    public List<CommitmentWithReduction> getCommitments(){
         return commitmentRepository.getCommitments();
     }
 

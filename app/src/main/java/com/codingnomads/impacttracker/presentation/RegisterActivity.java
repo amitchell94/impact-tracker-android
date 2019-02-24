@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -56,6 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
         successText.setText("");
         successText.setPaintFlags(successText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
+        Button registerButton = findViewById(R.id.reg_signup_button);
+        registerButton.setEnabled(false);
+        registerButton.setText("Creating Account...");
 
         Credentials credentials = getRegisterCredentials();
 

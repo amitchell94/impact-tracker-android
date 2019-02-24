@@ -7,17 +7,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.codingnomads.impacttracker.R;
-import com.codingnomads.impacttracker.logic.commitment.Commitment;
+import com.codingnomads.impacttracker.logic.commitment.CommitmentPresentation;
+import com.codingnomads.impacttracker.logic.commitment.CommitmentWithReduction;
 
 import java.util.List;
 
-public class CommitmentAdapter extends RecyclerView.Adapter<CommitmentAdapter.MyViewHolder> {
-    private List<Commitment> commitmentsList;
+public class CommitmentWithReductionAdapter extends RecyclerView.Adapter<CommitmentWithReductionAdapter.MyViewHolder> {
+    private List<CommitmentWithReduction> commitmentsList;
 
-    public CommitmentAdapter() {
+    public CommitmentWithReductionAdapter() {
     }
 
-    public CommitmentAdapter(List<Commitment> commitmentsList) {
+    public CommitmentWithReductionAdapter(List<CommitmentWithReduction> commitmentsList) {
         this.commitmentsList = commitmentsList;
     }
 
@@ -46,9 +47,16 @@ public class CommitmentAdapter extends RecyclerView.Adapter<CommitmentAdapter.My
 
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, int position) {
-        Commitment commitment = commitmentsList.get(position);
+        CommitmentWithReduction commitment = commitmentsList.get(position);
 
-        myViewHolder.textviewName.setText(commitment.getId().toString());
+        String commitmentString = capitaliseFirstLetter(commitment.getReduction());
+
+        if (!"days".equals(commitment.getReductionUnit())) {
+            commitmentString += " by " + commitment.getAmountToReduceBy() +
+                    " " + commitment.getReductionUnit() + " per day";
+        }
+
+        myViewHolder.textviewName.setText(commitmentString);
 
         myViewHolder.textViewStartDate.setText(commitment.getStartDate());
 
@@ -58,7 +66,6 @@ public class CommitmentAdapter extends RecyclerView.Adapter<CommitmentAdapter.My
             myViewHolder.textviewEndDate.setText(commitment.getEndDate());
         }
 
-
     }
 
     @Override
@@ -66,6 +73,13 @@ public class CommitmentAdapter extends RecyclerView.Adapter<CommitmentAdapter.My
         return commitmentsList.size();
     }
 
+    private static String capitaliseFirstLetter(String input) {
+        if (input == null || input.length() < 1) {
+            return input;
+        }
+
+        return input.substring(0, 1).toUpperCase() + input.substring(1);
+    }
 }
 
 

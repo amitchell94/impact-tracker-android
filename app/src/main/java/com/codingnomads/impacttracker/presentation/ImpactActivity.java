@@ -104,4 +104,9 @@ public class ImpactActivity extends AppCompatActivity implements PopupMenu.OnMen
                 return false;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 }

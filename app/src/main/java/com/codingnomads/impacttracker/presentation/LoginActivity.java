@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -52,6 +54,10 @@ public class LoginActivity extends AppCompatActivity {
         TextView errorText = findViewById(R.id.error_text);
         errorText.setText("");
 
+        Button loginButton = findViewById(R.id.loginbutton);
+        loginButton.setEnabled(false);
+        loginButton.setText("Logging in...");
+
         Credentials credentials = getLoginCredentials();
 
         loginService = new LoginService(new TokenRepository(createRestTemplate()));
@@ -59,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
         LoginTask loginTask = new LoginTask(loginService,new WeakReference<AppCompatActivity>(LoginActivity.this));
 
         loginTask.execute(credentials);
+
+        //TODO: Need to prevent login button being pressed twice.
     }
 
     @NonNull

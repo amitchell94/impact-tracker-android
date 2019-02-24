@@ -67,4 +67,9 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         Intent registerIntent = new Intent(this,RegisterActivity.class);
         startActivity(registerIntent);
     }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 }

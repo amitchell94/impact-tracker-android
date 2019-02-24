@@ -9,10 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.codingnomads.impacttracker.R;
-import com.codingnomads.impacttracker.data.CommitmentAdapter;
+import com.codingnomads.impacttracker.data.CommitmentWithReductionAdapter;
 import com.codingnomads.impacttracker.data.CommitmentRepository;
-import com.codingnomads.impacttracker.logic.commitment.Commitment;
+import com.codingnomads.impacttracker.logic.commitment.CommitmentPresentation;
 import com.codingnomads.impacttracker.logic.commitment.CommitmentService;
+import com.codingnomads.impacttracker.logic.commitment.CommitmentWithReduction;
 import com.codingnomads.impacttracker.logic.commitment.GetCommitmentsSyncTask;
 
 import java.util.ArrayList;
@@ -24,13 +25,13 @@ public class CommitmentsActivity extends AppCompatActivity {
 
     CommitmentService commitmentService = new CommitmentService(new CommitmentRepository(createRestTemplate()));
 
-    private List<Commitment> commitmentList = new ArrayList<>();
+    private List<CommitmentWithReduction> commitmentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commitments);
-        setSupportActionBar((Toolbar) findViewById(R.id.home_toolbar));
+        setSupportActionBar((Toolbar) findViewById(R.id.main_toolbar));
 
         RecyclerView commitmentListView = findViewById(R.id.commitment_recyclerview);
         commitmentListView.setHasFixedSize(true);
@@ -38,7 +39,7 @@ public class CommitmentsActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         commitmentListView.setLayoutManager(linearLayoutManager);
 
-        final CommitmentAdapter commitmentAdapter = new CommitmentAdapter(commitmentList);
+        final CommitmentWithReductionAdapter commitmentAdapter = new CommitmentWithReductionAdapter(commitmentList);
         commitmentListView.setAdapter(commitmentAdapter);
 
         new GetCommitmentsSyncTask(commitmentService, commitmentList, commitmentAdapter).execute();
