@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -86,16 +87,6 @@ public class AddCommitmentsActivity extends AppCompatActivity {
         reductionInput.setAdapter(reductionAdapter);
 
         new GetReductionsSyncTask(reductionService, reductionSpinnerData, reductionAdapter).execute();
-    }
-
-    public void addNewCommitment(View view) {
-        Commitment commitment = new Commitment();
-
-        commitmentService = new CommitmentService(new CommitmentRepository(createRestTemplate()));
-
-        SaveCommitmentTask saveCommitmentTask = new SaveCommitmentTask(commitmentService, new WeakReference<AppCompatActivity>(AddCommitmentsActivity.this));
-
-        saveCommitmentTask.execute(commitment);
     }
 
     @NonNull
@@ -193,8 +184,9 @@ public class AddCommitmentsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ((TextView) parent.getChildAt(0)).setTextSize(25);
+                ((TextView) parent.getChildAt(0)).setGravity(Gravity.CENTER);
                 ((TextView) parent.getChildAt(0)).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-
+                
                 String selectedReductionString = (String) parent.getItemAtPosition(position);
                 Reduction selectedReduction = reductionSpinnerData.getReductionMap().get(selectedReductionString);
                 if (selectedReduction.getAveragePerDay() != 1) {

@@ -68,6 +68,11 @@ public class HomeActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         startActivity(registerIntent);
     }
 
+    public void signIn (View view) {
+        Intent loginIntent = new Intent(this,LoginActivity.class);
+        startActivity(loginIntent);
+    }
+
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
